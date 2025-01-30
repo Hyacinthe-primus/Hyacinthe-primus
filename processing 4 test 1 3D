@@ -1,0 +1,137 @@
+import processing.serial.*;
+
+Serial myPort; // Port série pour communiquer avec l'Arduino
+float temperature = 0; // Température actuelle
+float humidity = 0; // Humidité actuelle
+boolean isFahrenheit = false; // Mode Fahrenheit ou Celsius
+
+ArrayList<Float> tempData = new ArrayList<Float>(); // Données de température
+ArrayList<Float> humiData = new ArrayList<Float>(); // Données d'humidité
+ArrayList<String> timeData = new ArrayList<String>(); // Données de temps
+
+int graphWidth = 800; // Largeur du graphique
+int graphHeight = 400; // Hauteur du graphique
+int margin = 50; // Marge autour du graphique
+
+int timeInterval = 30000; // Intervalle de temps entre les points (30 secondes)
+int lastTime = 0; // Dernier temps enregistré
+
+float angleX = 0; // Angle de rotation sur l'axe X
+float angleY = 0; // Angle de rotation sur l'axe Y
+
+void setup() {
+    size(1000, 500, P3D); // Taille de la fenêtre en mode 3D
+    println("Ports série disponibles :");
+    println(Serial.list()); // Affiche les ports série disponibles
+    myPort = new Serial(this, Serial.list()[0], 9600); // Remplacez [0] par le bon port
+    myPort.bufferUntil('\n'); // Lit les données jusqu'à un saut de ligne
+    textSize(12); // Taille du texte
+}
+
+void draw() {
+    background(0); // Fond noir
+    lights(); // Active les lumières pour la 3D
+    directionalLight(255, 255, 255, 0, 1, -1); // Lumière directionnelle pour éclairer la scène
+    pointLight(255, 255, 255, mouseX, mouseY, 200); // Lumière ponctuelle qui suit la souris
+    translate(width / 2, height / 2); // Centre le graphique
+    rotateX(angleX); // Rotation autour de l'axe X
+    rotateY(angleY); // Rotation autour de l'axe Y
+
+    drawGraph3D(); // Dessine le graphique 3D
+    drawLabels(); // Dessine les labels
+
+    // Animation de rotation de la scène
+    angleX += 0.01;
+    angleY += 0.01;
+}
+
+void serialEvent(Serial myPort) {
+    String data = myPort.readStringUntil('\n'); // Lit les données de l'Arduino
+    if (data != null) {
+        data = data.trim(); // Supprime les espaces inutiles
+
+        // Vérifie si le bouton a été pressé
+        if (data.equals("button_pressed")) {
+            isFahrenheit = !isFahrenheit; // Bascule entre Celsius et Fahrenheit
+            if (isFahrenheit) {
+                for (int i = 0; i < tempData.size(); i++) {
+                    tempData.set(i, (tempData.get(i) * 1.8) + 32); // Convertit en Fahrenheit
+                }
+            } else {
+                for (int i = 0; i < tempData.size(); i++) {
+                    tempData.set(i, (tempData.get(i) - 32) / 1.8); // Convertit en Celsius
+                }
+            }
+        } else {
+            // Sinon, traite les données de température et d'humidité
+            String[] values = split(data, ','); // Sépare les valeurs de température et d'humidité
+            if (values.length == 2) {
+                temperature = float(values[0]); // Température
+                humidity = float(values[1]); // Humidité
+
+                if (millis() - lastTime >= timeInterval) { // Ajoute des données toutes les 30 secondes
+                    tempData.add(isFahrenheit ? (temperature * 1.8) + 32 : temperature);
+                    humiData.add(humidity);
+                    timeData.add(getCurrentTime()); // Heure actuelle
+                    lastTime = millis();
+
+                    // Limite la taille des données à 100 éléments
+                    if (tempData.size() > 100) {
+                        tempData.remove(0);
+                        humiData.remove(0);
+                        timeData.remove(0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void drawGraph3D() {
+    // Dessine les axes X, Y, et Z
+    stroke(255);
+    line(-graphWidth / 2, 0, 0, graphWidth / 2, 0, 0); // Axe X
+    line(0, -graphHeight / 2, 0, 0, graphHeight / 2, 0); // Axe Y
+    line(0, 0, -200, 0, 0, 200); // Axe Z
+
+    // Dessine les courbes 3D
+    if (tempData.size() > 1) {
+        for (int i = 1; i < tempData.size(); i++) {
+            // Coordonnées X, Y, et Z pour la courbe de température
+            float x1 = map(i - 1, 0, tempData.size() - 1, -graphWidth / 2, graphWidth / 2);
+            float y1 = map(tempData.get(i - 1), 0, 100, graphHeight / 2, -graphHeight / 2);
+            float z1 = map(i - 1, 0, tempData.size() - 1, -200, 200);
+            float x2 = map(i, 0, tempData.size() - 1, -graphWidth / 2, graphWidth / 2);
+            float y2 = map(tempData.get(i), 0, 100, graphHeight / 2, -graphHeight / 2);
+            float z2 = map(i, 0, tempData.size() - 1, -200, 200);
+
+            // Couleur de la courbe de température
+            if (tempData.get(i) >= (isFahrenheit ? 68 : 20)) { // 20°C = 68°F
+                stroke(255, 0, 0); // Rouge si température >= 20°C ou 68°F
+            } else {
+                stroke(0, 0, 255); // Bleu sinon
+            }
+            line(x1, y1, z1, x2, y2, z2); // Courbe de température
+
+            // Humidité
+            stroke(0, 255, 0); // Vert pour l'humidité
+            y1 = map(humiData.get(i - 1), 0, 100, graphHeight / 2, -graphHeight / 2);
+            y2 = map(humiData.get(i), 0, 100, graphHeight / 2, -graphHeight / 2);
+            line(x1, y1, z1, x2, y2, z2); // Courbe d'humidité
+        }
+    }
+}
+
+void drawLabels() {
+    fill(255);
+    textAlign(CENTER, CENTER);
+
+    // Titres des axes
+    textSize(16);
+    text("Temps", width / 2, height - 30);
+    text("Température (°C/°F) / Humidité (%)", 30, height / 2, -90);
+}
+
+String getCurrentTime() {
+    return hour() + ":" + minute() + ":" + second(); // Retourne l'heure actuelle
+}
