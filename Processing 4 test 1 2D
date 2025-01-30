@@ -1,0 +1,167 @@
+import processing.serial.*;
+
+Serial myPort; // Port série pour communiquer avec l'Arduino
+float temperature = 0; // Température actuelle
+float humidity = 0; // Humidité actuelle
+boolean isFahrenheit = false; // Mode Fahrenheit ou Celsius
+
+ArrayList<Float> tempData = new ArrayList<Float>(); // Données de température
+ArrayList<Float> humiData = new ArrayList<Float>(); // Données d'humidité
+ArrayList<String> timeData = new ArrayList<String>(); // Données de temps
+
+int graphWidth = 800; // Largeur du graphique
+int graphHeight = 400; // Hauteur du graphique
+int margin = 50; // Marge autour du graphique
+
+int timeInterval = 30000; // Intervalle de temps entre les points (30 secondes)
+int lastTime = 0; // Dernier temps enregistré
+
+void setup() {
+    size(1000, 500); // Taille de la fenêtre
+    println("Ports série disponibles :");
+    println(Serial.list()); // Affiche les ports série disponibles
+    myPort = new Serial(this, Serial.list()[0], 9600); // Remplacez [0] par le bon port
+    myPort.bufferUntil('\n'); // Lit les données jusqu'à un saut de ligne
+    textSize(12); // Taille du texte
+}
+
+void draw() {
+    background(240, 240, 250); // Fond avec un léger ton violet clair pour l'élégance
+    drawGradientBackground(); // Dégradé de fond pour un effet agréable
+    drawGraph(); // Dessine le graphique
+    drawLabels(); // Dessine les labels
+    drawLegend(); // Légende des courbes
+}
+
+void serialEvent(Serial myPort) {
+    String data = myPort.readStringUntil('\n'); // Lit les données de l'Arduino
+    if (data != null) {
+        data = data.trim(); // Supprime les espaces inutiles
+
+        // Vérifie si le bouton a été pressé
+        if (data.equals("button_pressed")) {
+            isFahrenheit = !isFahrenheit; // Bascule entre Celsius et Fahrenheit
+            if (isFahrenheit) {
+                for (int i = 0; i < tempData.size(); i++) {
+                    tempData.set(i, (tempData.get(i) * 1.8) + 32); // Convertit en Fahrenheit
+                }
+            } else {
+                for (int i = 0; i < tempData.size(); i++) {
+                    tempData.set(i, (tempData.get(i) - 32) / 1.8); // Convertit en Celsius
+                }
+            }
+        } else {
+            // Sinon, traite les données de température et d'humidité
+            String[] values = split(data, ','); // Sépare les valeurs de température et d'humidité
+            if (values.length == 2) {
+                temperature = float(values[0]); // Température
+                humidity = float(values[1]); // Humidité
+
+                if (millis() - lastTime >= timeInterval) { // Ajoute des données toutes les 30 secondes
+                    tempData.add(isFahrenheit ? (temperature * 1.8) + 32 : temperature);
+                    humiData.add(humidity);
+                    timeData.add(getCurrentTime()); // Heure actuelle
+                    lastTime = millis();
+
+                    // Limite la taille des données à 100 éléments
+                    if (tempData.size() > 100) {
+                        tempData.remove(0);
+                        humiData.remove(0);
+                        timeData.remove(0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void drawGraph() {
+    // Dessine l'axe X (temps)
+    stroke(100);
+    strokeWeight(2);
+    line(margin, height - margin, width - margin, height - margin);
+
+    // Dessine l'axe Y (température/humidité)
+    line(margin, margin, margin, height - margin);
+
+    // Dessine les courbes avec une légère transparence
+    if (tempData.size() > 1) {
+        for (int i = 1; i < tempData.size(); i++) {
+            // Température
+            float x1 = map(i - 1, 0, tempData.size() - 1, margin, width - margin);
+            float y1 = map(tempData.get(i - 1), 0, 100, height - margin, margin);
+            float x2 = map(i, 0, tempData.size() - 1, margin, width - margin);
+            float y2 = map(tempData.get(i), 0, 100, height - margin, margin);
+
+            if (tempData.get(i) >= (isFahrenheit ? 68 : 20)) { // 20°C = 68°F
+                stroke(255, 0, 0, 150); // Rouge transparent si température >= 20°C ou 68°F
+            } else {
+                stroke(0, 0, 255, 150); // Bleu transparent sinon
+            }
+            strokeWeight(3);
+            line(x1, y1, x2, y2);
+
+            // Humidité
+            stroke(0, 255, 0, 150); // Vert transparent pour l'humidité
+            y1 = map(humiData.get(i - 1), 0, 100, height - margin, margin);
+            y2 = map(humiData.get(i), 0, 100, height - margin, margin);
+            strokeWeight(2);
+            line(x1, y1, x2, y2);
+
+            // Ajouter des points à chaque donnée pour rendre la courbe plus visible
+            fill(0);
+            ellipse(x2, y2, 6, 6);
+        }
+    }
+}
+
+void drawLabels() {
+    // Labels pour l'axe X (temps)
+    for (int i = 0; i < timeData.size(); i++) {
+        float x = map(i, 0, timeData.size() - 1, margin, width - margin);
+        fill(0);
+        textAlign(CENTER, TOP);
+        text(timeData.get(i), x, height - margin + 10);
+    }
+
+    // Labels pour l'axe Y (température/humidité)
+    for (int i = 0; i <= 100; i += 10) {
+        float y = map(i, 0, 100, height - margin, margin);
+        fill(0);
+        textAlign(RIGHT, CENTER);
+        text(i, margin - 10, y);
+    }
+
+    // Titres des axes
+    fill(0);
+    textAlign(CENTER, CENTER);
+    text("Temps", width / 2, height - margin + 30);
+    text("Température (°C/°F) / Humidité (%)", margin - 40, height / 2, -90);
+}
+
+void drawLegend() {
+    // Légende pour expliquer les courbes
+    fill(0);
+    textSize(14);
+    text("Température (°C/°F)", width - 200, margin + 30);
+    stroke(255, 0, 0);
+    line(width - 210, margin + 20, width - 230, margin + 20);
+
+    text("Humidité (%)", width - 200, margin + 50);
+    stroke(0, 255, 0);
+    line(width - 210, margin + 40, width - 230, margin + 40);
+}
+
+String getCurrentTime() {
+    return hour() + ":" + minute() + ":" + second(); // Retourne l'heure actuelle
+}
+
+void drawGradientBackground() {
+    // Création d'un fond en dégradé
+    for (int i = 0; i <= height; i++) {
+        float inter = map(i, 0, height, 0, 1);
+        int c = lerpColor(color(255, 255, 255), color(200, 200, 250), inter);
+        stroke(c);
+        line(0, i, width, i);
+    }
+}
