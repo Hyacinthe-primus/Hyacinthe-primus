@@ -1,0 +1,148 @@
+#include "LiquidCrystal_I2C.h"
+#include "DHT.h"
+
+bool alreadyseen = false;
+bool onetime = false;
+bool alreadyclicked = false;
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+#define dht22pin 4
+DHT dht22(dht22pin, DHT22);
+
+const int led = 2;
+const int pushbutton = 3;
+bool lastButtonState = LOW;
+
+byte smiley[8] = {
+    0b00000,
+    0b01010,
+    0b01010,
+    0b00000,
+    0b10001,
+    0b01110,
+    0b00000,
+};
+
+void afficherTexte(String texte, int delayTime) {
+    for (int i = 0; i < texte.length(); i++) {
+        lcd.print(texte.charAt(i));
+        delay(delayTime);
+    }
+}
+
+void setup() {
+    Serial.begin(9600); // the speed communication between arduino and the serial monitor
+    dht22.begin(); // the initialization of the dht 22
+    pinMode(pushbutton, INPUT_PULLUP);
+    pinMode(led, OUTPUT);
+    lcd.init(); // initialize the lcd
+    lcd.backlight(); // open the backlight
+}
+
+void loop() {
+    float humidity = dht22.readHumidity(); // a post function which read humidity
+    float temperature = dht22.readTemperature(); // a post function which read temperature
+    float convtemp = (temperature * 1.8) + 32; //
+
+    if (isnan(humidity) || isnan(temperature)) {
+        Serial.println("you have made bad connections check your connections");
+        digitalWrite(led, LOW); // led will be off to signalize that something went wrong
+        lcd.setCursor(3, 0); // the position of the text on lcd 16*2 screen
+        afficherTexte("Check your", 80);
+        lcd.setCursor(2, 1); // position of text on lcd
+        afficherTexte("Connections", 80);
+        delay(2500);
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        afficherTexte("Led'll be on if", 80);
+        lcd.setCursor(1, 1);
+        afficherTexte("links're good", 80);
+        delay(2200);
+        lcd.clear();
+        lcd.home();
+    } else {
+        digitalWrite(led, HIGH);
+        if (!onetime) {
+            lcd.setCursor(0, 0);
+            afficherTexte("Re'you American", 50);
+            lcd.setCursor(0, 1); // the position of the text on lcd 16*2 screen
+            afficherTexte("if yes push butt", 50);
+            delay(3000);
+            lcd.clear();
+            lcd.setCursor(0, 0);
+            afficherTexte("If not don't do", 50);
+            lcd.setCursor(0, 4); // the position of the text on lcd 16*2 screen
+            afficherTexte("anything", 50);
+            delay(2500);
+            onetime = true;
+            lcd.clear();
+        }
+        char humiStr[6]; //
+        dtostrf(humidity, 5, 3, humiStr); //
+        bool currentButtonState = digitalRead(pushbutton);
+        if (currentButtonState == LOW && lastButtonState == HIGH) {
+            delay(50);
+            Serial.println("button_pressed");
+            Serial.println("button clicked");
+            Serial.println("Well.. seems like we've an american in front of us");
+            if (!alreadyseen) {
+                lcd.clear();
+                lcd.noBacklight();
+                delay(3000);
+                lcd.backlight();
+                lcd.setCursor(0, 0);
+                afficherTexte("Explosion start", 120);
+                lcd.createChar(0, smiley);
+                lcd.setCursor(15, 0);
+                lcd.write(byte(0));
+                delay(1500);
+                lcd.clear();
+                delay(520);
+                lcd.setCursor(0, 0);
+                afficherTexte("3 2 1 Booommmm", 120);
+                lcd.setCursor(0, 1);
+                afficherTexte("   I'm Joking   ", 120);
+                alreadyseen = true;
+            }
+            delay(2700);
+            lcd.clear();
+            if (!alreadyclicked) {
+                alreadyclicked = true;
+                char tempFar[6]; //
+                dtostrf(convtemp, 5, 3, tempFar);
+                Serial.println("The temperature is arround " + String(tempFar) + "°F");
+                Serial.println("The humidity is arround " + String(humiStr) + "%");
+                lcd.clear();
+                lcd.setCursor(0, 0); //
+                lcd.print("Temp: "); //
+                lcd.print(tempFar); //
+                lcd.print((char)223); //
+                lcd.print("F");
+                lcd.setCursor(0, 1); //
+                lcd.print("Humi: "); //
+                lcd.print(humiStr); //
+                lcd.print("%"); //
+                delay(3000);
+            }
+        }
+      lastButtonState = currentButtonState;
+      Serial.print(temperature);
+      Serial.print(",");
+      Serial.println(humidity);
+        if (!alreadyclicked) {
+            char tempStr[6]; //
+            dtostrf(temperature, 5, 3, tempStr); //
+            Serial.println("The temperature is arround " + String(tempStr) + "°C");
+            Serial.println("The humidity is arround " + String(humiStr) + "%");
+            lcd.setCursor(0, 0); //
+            lcd.print("Temp: "); //
+            lcd.print(tempStr); //
+            lcd.print((char)223); //
+            lcd.print("C");
+            lcd.setCursor(0, 1); //
+            lcd.print("Humi: "); //
+            lcd.print(humiStr); //
+            lcd.print("%"); //
+        }
+        delay(2500);
+    }
+}
