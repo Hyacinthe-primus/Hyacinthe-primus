@@ -48,37 +48,22 @@ The compiler is usually more optimistic than I am.
 
 # GitHub Stats
 
-![](https://github-readme-stats.vercel.app/api?username=Hyacinthe-primus&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true)
-
-![](https://nirzak-streak-stats.vercel.app/?user=Hyacinthe-primus&theme=github-dark&hide_border=true)
-
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=Hyacinthe-primus&theme=github_dark&hide_border=true&layout=compact)
-
----
-
-## Activity Graph
-
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Hyacinthe-primus&theme=github-compact&hide_border=true" width="100%" />
+  <a href="https://github.com/Hyacinthe-primus">
+    <img height="180em" alt="Hyacinthe's github stats" src="https://github-stats-extended.vercel.app/api?username=Hyacinthe-primus&include_all_commits=true&count_private=true&show_icons=true&hide_border=true&theme=github_dark" />
+    <img height="180em" alt="Top langs" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Hyacinthe-primus&layout=compact&show_icons=true&hide_border=true&theme=github_dark" />
+  </a>
 </p>
 
----
-
-## GitHub Trophies
-
-![](https://github-profile-trophy.vercel.app/?username=Hyacinthe-primus&theme=radical&no-frame=true&no-bg=true)
+<p align="center">
+  <img src="https://github-readme-streak-stats-eight.vercel.app/?user=Hyacinthe-primus&theme=github-dark&hide_border=true" />
+</p>
 
 ---
 
 ### Random Dev Quote
 
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark)
-
----
-
-### Top Contributed Repo
-
-![](https://github-contributor-stats.vercel.app/api?username=Hyacinthe-primus&limit=5&theme=dark&combine_all_yearly_contributions=true)
 
 ---
 
