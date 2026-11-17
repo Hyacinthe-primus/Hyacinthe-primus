@@ -1,72 +1,58 @@
-# About Me
+# Hyacinthe
 
-> *Coding is cheaper than therapy. So here we are.*
+Independent software developer working across desktop applications, embedded systems and the web. I like building tools that solve a concrete problem, from file conversion to hardware access control.
 
-I build things that probably didn't need to exist.
-
-Sometimes they're useful.
-Sometimes they're just an excuse to learn something new.
-
-Some projects get finished.
-Some stay unfinished for reasons we'll never discuss.
-
-The compiler is usually more optimistic than I am.
-
----
+> The compiler is usually more optimistic than I am.
 
 <p align="center">
-  <a href="https://github.com/Hyacinthe-primus">
-    <img src="https://img.shields.io/github/followers/Hyacinthe-primus?label=Followers&style=social" />
-  </a>
+  <a href="https://file-converter-pro.org/"><img src="https://img.shields.io/badge/Website-0F172A?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website" /></a>
+  <a href="https://reddit.com/user/___Hyacinthe_"><img src="https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Reddit" /></a>
+  <a href="https://ko-fi.com/hyacinthe_primus"><img src="https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi" /></a>
 </p>
 
-## Socials
+## Projects
 
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/___hyacinthe_)
-[![Reddit](https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://reddit.com/user/___Hyacinthe_)
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/hyacinthe_primus)
-[![Website](https://img.shields.io/badge/Website-0F172A?style=for-the-badge&logo=googlechrome&logoColor=white)](https://file-converter-pro.org/)
+- **File Converter Pro**: desktop application for converting files between many formats. Built with Python and PySide6, packaged with PyInstaller. [file-converter-pro.org](https://file-converter-pro.org/)
+- **GateCore**: standalone ESP32-S3 access controller with a PN532 NFC reader. It stores 70,000 users in a CRC-protected LittleFS database and enforces NTP-based expiry, with non-expiring admin badges and no host required. **gatecore-cli**, a cross-platform Rust tool, handles serial management, enrollment, bulk sync, renewal, Wi-Fi and timezone setup.
+- **scanlayer**: Python library that turns scans and photos into searchable PDFs or raw OCR output using Tesseract. Usable as a library or as a standalone CLI.
 
----
+## Tech stack
 
-# Tech Stack
+**Languages**
 
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](#)
-[![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)](#)
-[![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)](#)
-[![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)](#)
-[![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white)](#)
-[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](#)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](#)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](#)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](#)
-[![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](#)
-[![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](#)
-[![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)](#)
-
----
-
-# GitHub Stats
-
-<p align="center">
-  <a href="https://github.com/Hyacinthe-primus">
-    <img height="180em" alt="Hyacinthe's github stats" src="https://github-stats-extended.vercel.app/api?username=Hyacinthe-primus&include_all_commits=true&count_private=true&show_icons=true&hide_border=true&theme=github_dark" />
-    <img height="180em" alt="Top langs" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Hyacinthe-primus&layout=compact&show_icons=true&hide_border=true&theme=github_dark" />
-  </a>
+<p>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" height="24" alt="Python" />
+  <img src="https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white" height="24" alt="C" />
+  <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white" height="24" alt="C++" />
+  <img src="https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white" height="24" alt="Rust" />
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" height="24" alt="PHP" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" height="24" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=windowsterminal&logoColor=white" height="24" alt="PowerShell" />
 </p>
 
+**Embedded**
+
+<p>
+  <img src="https://img.shields.io/badge/ESP--IDF-E7352C?style=flat-square&logo=espressif&logoColor=white" height="24" alt="ESP-IDF" />
+  <img src="https://img.shields.io/badge/Arduino-00979D?style=flat-square&logo=arduino&logoColor=white" height="24" alt="Arduino" />
+</p>
+
+**Web and data**
+
+<p>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" height="24" alt="HTML5" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" height="24" alt="CSS3" />
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white" height="24" alt="SQLite" />
+  <img src="https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white" height="24" alt=".NET" />
+</p>
+
+## GitHub stats
+
 <p align="center">
-  <img src="https://github-readme-streak-stats-eight.vercel.app/?user=Hyacinthe-primus&theme=github-dark&hide_border=true" />
+  <img height="180em" alt="GitHub stats" src="https://github-stats-extended.vercel.app/api?username=Hyacinthe-primus&include_all_commits=true&count_private=true&show_icons=true&hide_border=true&theme=github_dark" />
+  <img height="180em" alt="Top languages" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Hyacinthe-primus&layout=compact&hide_border=true&theme=github_dark" />
 </p>
 
 ---
 
-### Random Dev Quote
-
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark)
-
----
-
-> "The code compiles. That's enough for today."
-
-![](https://visitcount.itsvg.in/api?id=Hyacinthe-primus&icon=0&color=0)
+> The code compiles. That's enough for today.
