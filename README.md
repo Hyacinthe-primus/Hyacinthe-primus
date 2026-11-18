@@ -13,7 +13,7 @@ Independent software developer working across desktop applications, embedded sys
 ## Projects
 
 - **File Converter Pro**: desktop application for converting files between many formats. Built with Python and PySide6, packaged with PyInstaller. [file-converter-pro.org](https://file-converter-pro.org/)
-- **GateCore**: standalone ESP32-S3 access controller with a PN532 NFC reader. It stores 70,000 users in a CRC-protected LittleFS database and enforces NTP-based expiry, with non-expiring admin badges and no host required. **gatecore-cli**, a cross-platform Rust tool, handles serial management, enrollment, bulk sync, renewal, Wi-Fi and timezone setup.
+- **GateCore**: standalone ESP32-S3 access controller with a PN532 NFC reader and a 16x2 I2C LCD. It stores 70,000 users in a CRC-protected LittleFS database and enforces NTP-based expiry, with non-expiring admin badges and no host required. **gatecore-cli**, a cross-platform Rust tool, handles serial management, enrollment, bulk sync, renewal, Wi-Fi and timezone setup.
 - **scanlayer**: Python library that turns scans and photos into searchable PDFs or raw OCR output using Tesseract. Usable as a library or as a standalone CLI.
 
 ## Tech stack
@@ -51,6 +51,10 @@ Independent software developer working across desktop applications, embedded sys
 <p align="center">
   <img height="180em" alt="GitHub stats" src="https://github-stats-extended.vercel.app/api?username=Hyacinthe-primus&include_all_commits=true&count_private=true&show_icons=true&hide_border=true&theme=github_dark" />
   <img height="180em" alt="Top languages" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Hyacinthe-primus&layout=compact&hide_border=true&theme=github_dark" />
+</p>
+
+<p align="center">
+  <img alt="GitHub streak" src="https://github-readme-streak-stats-eight.vercel.app/?user=Hyacinthe-primus&theme=github-dark&hide_border=true" />
 </p>
 
 ---
