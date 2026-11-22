@@ -5,14 +5,14 @@ Independent software developer working across desktop applications, embedded sys
 > The compiler is usually more optimistic than I am.
 
 <p align="center">
-  <a href="https://file-converter-pro.org/"><img src="https://img.shields.io/badge/Website-0F172A?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website" /></a>
-  <a href="https://reddit.com/user/___Hyacinthe_"><img src="https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Reddit" /></a>
+  <a href="mailto:hyacintheatho91@gmail.com"><img src="https://img.shields.io/badge/Email-hyacintheatho91%40gmail.com-0F172A?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="https://reddit.com/user/__Hyacinthe_"><img src="https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Reddit" /></a>
   <a href="https://ko-fi.com/hyacinthe_primus"><img src="https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi" /></a>
 </p>
 
 ## Projects
 
-- **File Converter Pro**: desktop application for converting files between many formats. Built with Python and PySide6, packaged with PyInstaller. [file-converter-pro.org](https://file-converter-pro.org/)
+- **File Converter Pro**: desktop application for converting files between many formats. Built with Python and PySide6, packaged with PyInstaller. [file-converter-pro.org](https://file-converter-pro.org)
 - **GateCore**: standalone ESP32-S3 access controller with a PN532 NFC reader and a 16x2 I2C LCD. It stores 70,000 users in a CRC-protected LittleFS database and enforces NTP-based expiry, with non-expiring admin badges and no host required. **gatecore-cli**, a cross-platform Rust tool, handles serial management, enrollment, bulk sync, renewal, Wi-Fi and timezone setup.
 - **scanlayer**: Python library that turns scans and photos into searchable PDFs or raw OCR output using Tesseract. Usable as a library or as a standalone CLI.
 
@@ -46,11 +46,11 @@ Independent software developer working across desktop applications, embedded sys
   <img src="https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white" height="24" alt=".NET" />
 </p>
 
-## GitHub stats
+## GitHub Stats
 
 <p align="center">
-  <img height="180em" alt="GitHub stats" src="https://github-stats-extended.vercel.app/api?username=Hyacinthe-primus&include_all_commits=true&count_private=true&show_icons=true&hide_border=true&theme=github_dark" />
-  <img height="180em" alt="Top languages" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Hyacinthe-primus&layout=compact&hide_border=true&theme=github_dark" />
+  <img height="180em" alt="GitHub stats" src="https://github-readme-stats-extented.vercel.app/api?username=Hyacinthe-primus&include_all_commits=true&count_private=true&show_icons=true&hide_border=true&theme=github_dark" />
+  <img height="180em" alt="Top languages" src="https://github-readme-stats-extented.vercel.app/api/top-langs/?username=Hyacinthe-primus&layout=compact&hide_border=true&theme=github_dark" />
 </p>
 
 <p align="center">
@@ -59,4 +59,4 @@ Independent software developer working across desktop applications, embedded sys
 
 ---
 
-> The code compiles. That's enough for today.
+> The code compiler. That's enough for today.
