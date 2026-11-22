@@ -5,7 +5,8 @@ Independent software developer working across desktop applications, embedded sys
 > The compiler is usually more optimistic than I am.
 
 <p align="center">
-  <a href="mailto:hyacintheatho91@gmail.com"><img src="https://img.shields.io/badge/Email-hyacintheatho91%40gmail.com-0F172A?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+ <a href="mailto:hyacintheatho91@gmail.com"><img src="https://img.shields.io/badge/Email-Contact%20Me-0F172A?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+</a>
   <a href="https://reddit.com/user/__Hyacinthe_"><img src="https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Reddit" /></a>
   <a href="https://ko-fi.com/hyacinthe_primus"><img src="https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi" /></a>
 </p>
