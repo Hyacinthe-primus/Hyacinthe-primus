@@ -50,12 +50,15 @@ Independent software developer working across desktop applications, embedded sys
 ## GitHub Stats
 
 <p align="center">
-  <img height="180em" alt="GitHub stats" src="https://github-readme-stats-extented.vercel.app/api?username=Hyacinthe-primus&include_all_commits=true&count_private=true&show_icons=true&hide_border=true&theme=github_dark" />
-  <img height="180em" alt="Top languages" src="https://github-readme-stats-extented.vercel.app/api/top-langs/?username=Hyacinthe-primus&layout=compact&hide_border=true&theme=github_dark" />
+  <img height="180em" alt="GitHub stats"
+       src="https://github-stats-extended.vercel.app/api?username=Hyacinthe-primus&include_all_commits=true&count_private=true&show_icons=true&hide_border=true&theme=github_dark" />
+  <img height="180em" alt="Top languages"
+       src="https://github-stats-extended.vercel.app/api/top-langs/?username=Hyacinthe-primus&layout=compact&hide_border=true&theme=github_dark" />
 </p>
 
 <p align="center">
-  <img alt="GitHub streak" src="https://github-readme-streak-stats-eight.vercel.app/?user=Hyacinthe-primus&theme=github-dark&hide_border=true" />
+  <img alt="GitHub streak"
+       src="https://streak-stats.demolab.com/?user=Hyacinthe-primus&theme=github-dark&hide_border=true" />
 </p>
 
 ---
